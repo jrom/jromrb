@@ -1,0 +1,4 @@
+%form{:method => 'post', :action => '/posts/new', :class => ''}
+	= haml :'posts/form', :layout => false
+	%p
+		%input{:type => 'submit', :value => 'Add'}

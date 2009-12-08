@@ -1,0 +1,28 @@
+#admin
+{
+  display: block;
+  clear: both;
+  position: absolute;
+  top: 0;
+  background: #000;
+  color: #fff;
+  height: 30px;
+  padding: 0 5px;
+  line-height: 1.5em;
+}
+
+body
+{
+  margin-top: 60px;
+}
+#admin ul
+{
+  display: inline;
+  
+}
+#admin ul li
+{
+  float: left;
+  list-style: none;
+  margin: 0 0 0 15px;
+}
