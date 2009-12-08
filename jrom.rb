@@ -114,11 +114,16 @@ get '/articles/:url/?' do |url|
 end
 
 get '/stylesheets/admin.css' do
-  header 'Content-Type' => 'text/css; charset=utf-8'
+  headers 'Content-Type' => 'text/css; charset=utf-8'
   sass :'style/admin'
 end
 
 get '/stylesheets/base.css' do
-  header 'Content-Type' => 'text/css; charset=utf-8'
+  headers 'Content-Type' => 'text/css; charset=utf-8'
   sass :'style/base'
+end
+
+get '/stylesheets/code.css' do
+  headers 'Content-Type' => 'text/css; charset=utf-8'
+  sass :'style/zenburn'
 end
