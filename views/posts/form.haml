@@ -1,21 +1,26 @@
 - if @post.errors.length > 0
-  %ul{:class => 'errors'}
-    - @post.errors.each do |error|
-      %li= error
+	%ul{:class => 'errors'}
+		- @post.errors.each do |error|
+			%li= error
 - if @post.new?
-  %p
-    %label{:for => 'url'}URL:
-    %br
-    %input{:type => 'text', :name => 'url', :value => @post.url}
+	%p
+		%label{:for => 'url'}URL:
+		%br
+		%input{:type => 'text', :name => 'url', :id => 'url', :value => @post.url}
 %p
-  %label{:for => 'title'}Title:
-  %br
-  %input{:type => 'text', :name => 'title', :value => @post.title}
+	%label{:for => 'title'}Title:
+	%br
+	%input{:type => 'text', :name => 'title', :id => 'title', :value => @post.title}
 %p
-  %label{:for => 'introduction'}Introduction:
-  %br
-  %input{:type => 'text', :name => 'introduction', :value => @post.introduction}
+	%label{:for => 'introduction'}Introduction:
+	%br
+	%input{:type => 'text', :name => 'introduction', :id => 'introduction', :value => @post.introduction}
 %p
-  %label{:for => 'body'}Body:
-  %br
-  %textarea{:name => 'body', :rows => 15, :cols => 88}= @post.body
+	%label{:for => 'body'}Body:
+	%br
+	%textarea{:name => 'body', :id => 'body', :rows => 15, :cols => 88}= @post.body
+%p
+	%label{:for => 'published'}Status:
+	%select{:name => 'published', :id => 'published'}
+		%option{:value => 0, :selected => @post.published_at.nil?} Unpublished
+		%option{:value => 1, :selected => !@post.published_at.nil?} Published

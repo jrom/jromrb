@@ -39,7 +39,7 @@ not_found do
 end
 
 get '/' do
-  @posts = Post.all
+  @posts = Post.all(:published_at.not => nil, :order => [:published_at.desc])
   haml :index
 end
 
@@ -85,6 +85,12 @@ post '/posts/:url/edit/?' do |url|
   else
     raise not_found
   end
+end
+
+get '/posts/drafts/?' do
+  require_user
+  @posts = Post.all(:published_at => nil, :order => [:updated_at.desc])
+  haml :index
 end
 
 get '/login/?' do

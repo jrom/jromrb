@@ -1,8 +1,10 @@
 %h2.title
-  = @post.title
+	= @post.title
+	- if logged_in?
+		%a{:href => "/posts/#{@post.url}/edit"} (Edit)
 %p.introduction= @post.introduction
 - if @post.published_at
-  %time{:datetime => @post.published_at.strftime("%Y-%m-%d")}= @post.published_at.strftime("%b %d, %Y")
+	%time{:datetime => @post.published_at.strftime("%Y-%m-%d")}= @post.published_at.strftime("%b %d, %Y")
 %post.body
-  :markdown
-    #{@post.body}
+	:markdown
+		#{@post.body}

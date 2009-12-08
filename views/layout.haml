@@ -6,11 +6,15 @@
 		- if logged_in?
 			%link{:href => '/stylesheets/admin.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
 	%body
+		%h1
+			%a{:href => '/'} Jordi Romero
 		= yield
 - if logged_in?
 	%div#admin
 		%ul
 			%li
 				%a{:href => '/posts/new'} New post
+			%li
+				%a{:href => '/posts/drafts'} Drafts
 			%li
 				%a{:href => '/logout'} Logout
