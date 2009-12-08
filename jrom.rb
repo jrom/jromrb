@@ -112,3 +112,13 @@ get '/articles/:url/?' do |url|
     raise not_found
   end
 end
+
+get '/stylesheets/admin.css' do
+  header 'Content-Type' => 'text/css; charset=utf-8'
+  sass :'style/admin'
+end
+
+get '/stylesheets/base.css' do
+  header 'Content-Type' => 'text/css; charset=utf-8'
+  sass :'style/base'
+end
