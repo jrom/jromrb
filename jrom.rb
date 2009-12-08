@@ -1,14 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
+require 'bluecloth'
 
 Dir.glob('lib/*.rb') do |lib|
   require lib
 end
 
 configure do
-  require File.dirname(__FILE__) + '/config/jrom.rb'
   enable :sessions
+  APP_CONFIG = YAML.load_file("#{Dir.pwd}/config/jrom.yml")
+  DataMapper.setup(:default, APP_CONFIG['database'])
 end
 
 helpers do
@@ -30,7 +32,7 @@ helpers do
 
   def authorized?
     @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-    @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == ['admin', 'password']
+    @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials[0] == APP_CONFIG['user']  && OpenSSL::Digest::SHA1.new(@auth.credentials[1]).hexdigest == APP_CONFIG['password']
   end
 end
 

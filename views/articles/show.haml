@@ -6,5 +6,4 @@
 - if @article.published_at
 	%time{:datetime => @article.published_at.strftime("%Y-%m-%d")}= @article.published_at.strftime("%b %d, %Y")
 %article.body
-	:markdown
-		#{@article.body}
+	~BlueCloth.new(@article.body).to_html
