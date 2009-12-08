@@ -4,7 +4,7 @@ require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
 
-class Post
+class Article
   include DataMapper::Resource
 
   property :url, String, :key => true

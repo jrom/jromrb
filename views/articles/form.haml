@@ -1,0 +1,26 @@
+- if @article.errors.length > 0
+	%ul{:class => 'errors'}
+		- @article.errors.each do |error|
+			%li= error
+- if @article.new?
+	%p
+		%label{:for => 'url'}URL:
+		%br
+		%input{:type => 'text', :name => 'url', :id => 'url', :value => @article.url}
+%p
+	%label{:for => 'title'}Title:
+	%br
+	%input{:type => 'text', :name => 'title', :id => 'title', :value => @article.title}
+%p
+	%label{:for => 'introduction'}Introduction:
+	%br
+	%input{:type => 'text', :name => 'introduction', :id => 'introduction', :value => @article.introduction}
+%p
+	%label{:for => 'body'}Body:
+	%br
+	%textarea{:name => 'body', :id => 'body', :rows => 15, :cols => 88}= @article.body
+%p
+	%label{:for => 'published'}Status:
+	%select{:name => 'published', :id => 'published'}
+		%option{:value => 0, :selected => @article.published_at.nil?} Unpublished
+		%option{:value => 1, :selected => !@article.published_at.nil?} Published

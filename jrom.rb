@@ -39,57 +39,57 @@ not_found do
 end
 
 get '/' do
-  @posts = Post.all(:published_at.not => nil, :order => [:published_at.desc])
+  @articles = Article.all(:published_at.not => nil, :order => [:published_at.desc])
   haml :index
 end
 
-get '/posts/new/?' do
+get '/articles/new/?' do
   require_user
 
-  @post = Post.new(params)
-  haml :'posts/new'
+  @article = Article.new(params)
+  haml :'articles/new'
 end
 
-post '/posts/new/?' do
+post '/articles/new/?' do
   require_user
 
-  @post = Post.new(params)
-  if @post.save
-    redirect "/#{@post.url}"
+  @article = Article.new(params)
+  if @article.save
+    redirect "/articles/#{@article.url}"
   else
-    haml :'posts/new'
+    haml :'articles/new'
   end
 end
 
-get '/posts/:url/edit/?' do |url|
+get '/articles/:url/edit/?' do |url|
   require_user
 
-  @post = Post.first(:url => url)
-  if @post
-    haml :'posts/edit'
+  @article = Article.first(:url => url)
+  if @article
+    haml :'articles/edit'
   else
     raise not_found
   end
 end
 
-post '/posts/:url/edit/?' do |url|
+post '/articles/:url/edit/?' do |url|
   require_user
 
-  @post = Post.first(:url => url)
-  if @post
-    if @post.update(params)
-      redirect "/#{@post.url}"
+  @article = Article.first(:url => url)
+  if @article
+    if @article.update(params)
+      redirect "/articles/#{@article.url}"
     else
-      haml :'posts/edit'
+      haml :'articles/edit'
     end
   else
     raise not_found
   end
 end
 
-get '/posts/drafts/?' do
+get '/articles/drafts/?' do
   require_user
-  @posts = Post.all(:published_at => nil, :order => [:updated_at.desc])
+  @articles = Article.all(:published_at => nil, :order => [:updated_at.desc])
   haml :index
 end
 
@@ -102,10 +102,10 @@ get '/logout/?' do
   redirect '/'
 end
 
-get '/:url/?' do |url|
-  @post = Post.first(:url => url)
-  if @post
-    haml :'posts/show'
+get '/articles/:url/?' do |url|
+  @article = Article.first(:url => url)
+  if @article
+    haml :'articles/show'
   else
     raise not_found
   end

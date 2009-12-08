@@ -1,6 +1,6 @@
 
-- if @posts && @posts.length > 0
-	- @posts.each do |post|
+- if @articles && @articles.length > 0
+	- @articles.each do |article|
 		%h2
-			%a{:href => "/#{post.url}"}= post.title
-		%p= post.introduction
+			%a{:href => "/articles/#{article.url}"}= article.title
+		%p= article.introduction
