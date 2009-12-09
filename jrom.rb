@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
+require 'compass'
 require 'bluecloth'
 
 Dir.glob('lib/*.rb') do |lib|
@@ -11,6 +12,13 @@ configure do
   enable :sessions
   APP_CONFIG = YAML.load_file("#{Dir.pwd}/config/jrom.yml")
   DataMapper.setup(:default, APP_CONFIG['database'])
+
+  Compass.configuration do |config|
+    config.project_path = File.dirname(__FILE__)
+    config.sass_dir = 'views/style'
+  end
+
+  set :sass, Compass.sass_engine_options
 end
 
 helpers do

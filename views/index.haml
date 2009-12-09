@@ -1,6 +1,10 @@
-
+- @body_class = 'index'
 - if @articles && @articles.length > 0
-	- @articles.each do |article|
-		%h2
-			%a{:href => "/articles/#{article.url}"}= article.title
-		%p= article.introduction
+	%ul#articles
+		- @articles.each do |article|
+			%li#article
+				%span.date= (article.published_at ? article.published_at.strftime("%b %d, %Y") : "DRAFT")
+				%h2
+					%a{:href => "/articles/#{article.url}"}= article.title
+				%p.intro= article.introduction
+

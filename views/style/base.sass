@@ -1,6 +1,52 @@
-body
-  margin: auto
-  width: 800px
-  background-color: #fff
-  color: #000
-  font-family: sans-serif
+@import base.sass
+
+@font-face
+	font-family: "lucida grande"
+	src: url("/fonts/museo_sans_500.otf")
+
+#content
+	+container
+	margin-top: 20px
+	font-size: 15px
+	font-family: "1Lucida Grande", "Lucida Sans", Helvetica, sans-serif
+	h1
+		font-size: 1.5em
+		font-variant: small-caps
+body.index
+	#content
+		h1
+			font-size: 3em
+
+#header
+	+prepend(5)
+
+#articles
+	+no-bullets
+	margin: 0
+	#article
+		p.intro
+			+prepend(5)
+			+column(13, true)
+
+#article
+	.date
+		color: black
+		font-size: 1.5em
+		line-height: 2em
+		color: #777
+		+prepend(1)
+		+column(4)
+	h2
+		+column(13, true)
+		margin-bottom: 0
+
+#article.solo
+	p.intro
+		clear: both
+	h2
+		margin-bottom: 40px
+
+			
+#header, #articles #article, h2
+	a
+		+hover-link

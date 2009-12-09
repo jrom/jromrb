@@ -9,7 +9,7 @@ class Article
 
   property :url, String, :key => true
   property :title, String
-  property :introduction, String
+  property :introduction, String, :length => 200
   property :body, Text
   property :published_at, DateTime
 

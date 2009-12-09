@@ -10,11 +10,11 @@
 %p
 	%label{:for => 'title'}Title:
 	%br
-	%input{:type => 'text', :name => 'title', :id => 'title', :value => @article.title}
+	%input{:type => 'text', :name => 'title', :id => 'title', :size => 50, :value => @article.title}
 %p
 	%label{:for => 'introduction'}Introduction:
 	%br
-	%input{:type => 'text', :name => 'introduction', :id => 'introduction', :value => @article.introduction}
+	%textarea{:name => 'introduction', :id => 'introduction', :cols => 88}~  @article.introduction
 %p
 	%label{:for => 'body'}Body:
 	%br

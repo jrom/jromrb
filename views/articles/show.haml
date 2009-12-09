@@ -1,9 +1,12 @@
-%h2.title
-	= @article.title
+#article.solo
+	%span.date= (@article.published_at ? @article.published_at.strftime("%b %d, %Y") : "DRAFT")
+	%h2
+		%a{:href => "/articles/#{@article.url}"}= @article.title
+
+	%p.intro= @article.introduction
+
 	- if logged_in?
 		%a{:href => "/articles/#{@article.url}/edit"} (Edit)
-%p.introduction= @article.introduction
-- if @article.published_at
-	%time{:datetime => @article.published_at.strftime("%Y-%m-%d")}= @article.published_at.strftime("%b %d, %Y")
-%article.body
-	~BlueCloth.new(@article.body).to_html
+
+	%article.body
+		~BlueCloth.new(@article.body).to_html
