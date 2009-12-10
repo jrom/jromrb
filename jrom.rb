@@ -3,6 +3,7 @@ require 'sinatra'
 require 'haml'
 require 'compass'
 require 'bluecloth'
+require 'xmlrpc/marshal'
 
 Dir.glob('lib/*.rb') do |lib|
   require lib
@@ -46,6 +47,21 @@ end
 
 not_found do
   haml :not_found
+end
+
+
+post '/xmlrpc' do
+  puts @request.inspect
+  puts params.inspect
+
+  xml = @request.env["rack.request.form_vars"]
+  if !xml || xml.empty?
+    hash = @request.env["rack.request.query_hash"]
+    xml = (hash.keys + hash.values).join
+  end
+  puts xml
+  headers 'Content-Type' => 'text/xml'
+  XMLRPC::Marshal.dump_response(["hola"])
 end
 
 get '/' do
