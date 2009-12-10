@@ -54,9 +54,17 @@ end
 post '/xmlrpc' do
   xmlrpc = XMLRPC::BasicServer.new
   xmlrpc.add_handler('metaWeblog.getRecentPosts') do
-    articles = Article.all
-    articles.map{ |a| a.to_metaweblog}
+    Article.all.map{ |a| a.to_metaweblog}
   end
+
+  xmlrpc.add_handler('metaWeblog.editPost') do |postid,username,password,struct,publish|
+    "abcdefg"
+  end
+
+  xmlrpc.add_handler('metaWeblog.getPost') do |postid,username,password|
+    Article.first.to_metaweblog
+  end
+
   response = xmlrpc.process(@request.body.read)
   headers 'Content-Type' => 'text/xml'
   puts response.inspect
