@@ -3,6 +3,7 @@ require 'sinatra'
 require 'haml'
 require 'compass'
 require 'bluecloth'
+require 'xmlrpc/server'
 require 'xmlrpc/marshal'
 
 Dir.glob('lib/*.rb') do |lib|
@@ -51,17 +52,15 @@ end
 
 
 post '/xmlrpc' do
-  puts @request.inspect
-  puts params.inspect
-
-  xml = @request.env["rack.request.form_vars"]
-  if !xml || xml.empty?
-    hash = @request.env["rack.request.query_hash"]
-    xml = (hash.keys + hash.values).join
+  xmlrpc = XMLRPC::BasicServer.new
+  xmlrpc.add_handler('metaWeblog.getRecentPosts') do
+    articles = Article.all
+    articles.map{ |a| a.to_metaweblog}
   end
-  puts xml
+  response = xmlrpc.process(@request.body.read)
   headers 'Content-Type' => 'text/xml'
-  XMLRPC::Marshal.dump_response(["hola"])
+  puts response.inspect
+  response
 end
 
 get '/' do

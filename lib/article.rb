@@ -27,4 +27,17 @@ class Article
     end
   end
 
+  def to_metaweblog
+   {
+    :dateCreated => created_at,
+    :description => body,
+    :title => title,
+    :wp_slug => "#{url}",
+    :link => "/#{url}",
+    :permaLink => "/#{url}",
+    :mt_excerpt => introduction,
+    :post_status => !published_at.nil?,
+  }
+  end
+
 end
