@@ -50,6 +50,10 @@ not_found do
   haml :not_found
 end
 
+before do
+  headers "Content-Type" => "text/html; charset=utf-8"
+end
+
 
 post '/xmlrpc' do
   xmlrpc = XMLRPC::BasicServer.new

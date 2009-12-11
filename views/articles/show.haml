@@ -5,8 +5,8 @@
 
 	%p.intro= @article.introduction
 
-	- if logged_in?
-		%a{:href => "/articles/#{@article.url}/edit"} (Edit)
-
 	%article.body
 		~BlueCloth.new(@article.body).to_html
+
+	- if logged_in?
+		%a{:href => "/articles/#{@article.url}/edit"} e

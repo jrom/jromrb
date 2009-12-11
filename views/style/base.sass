@@ -12,21 +12,28 @@
 	h1
 		font-size: 1.5em
 		font-variant: small-caps
-body.index
+/*body.index
 	#content
 		h1
-			font-size: 3em
+			font-size: 3em*/
 
 #header
-	+prepend(5)
+	+column(18)
+	margin-bottom: 40px
+	padding-bottom: 5px
+	border-bottom: 5px solid #d8d8d8
+	a
+		+column(5)
+		text-align: right
 
 #articles
 	+no-bullets
 	margin: 0
-	#article
-		p.intro
-			+prepend(5)
-			+column(13, true)
+
+h3.articles
+	+prepend(5)
+	padding-bottom: 10px
+	border-bottom: 5px solid #EEE
 
 #article
 	.date
@@ -39,12 +46,13 @@ body.index
 	h2.title
 		+column(13, true)
 		margin-bottom: 0
+	p.intro
+		+prepend(5)
+		+column(13, true)
 
 #article.solo
 	p.intro
 		clear: both
-	h2.title
-		margin-bottom: 40px
 
 			
 #header, #articles #article, h2

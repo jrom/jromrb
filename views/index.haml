@@ -1,5 +1,7 @@
 - @body_class = 'index'
+
 - if @articles && @articles.length > 0
+	/ %h3.articles Archive
 	%ul#articles
 		- @articles.each do |article|
 			%li#article
