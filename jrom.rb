@@ -58,16 +58,20 @@ post '/xmlrpc' do
   end
 
   xmlrpc.add_handler('metaWeblog.editPost') do |postid,username,password,struct,publish|
-    "abcdefg"
+    article = Article.first(:id => postid.to_i)
+    article.title = struct["title"]
+    article.body = struct["description"]
+    article.save
+    article.to_metaweblog
   end
 
   xmlrpc.add_handler('metaWeblog.getPost') do |postid,username,password|
-    Article.first.to_metaweblog
+    Article.first(:id => postid.to_i).to_metaweblog
   end
 
   response = xmlrpc.process(@request.body.read)
   headers 'Content-Type' => 'text/xml'
-  puts response.inspect
+  # puts response.inspect
   response
 end
 

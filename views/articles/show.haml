@@ -1,6 +1,6 @@
 #article.solo
 	%span.date= (@article.published_at ? @article.published_at.strftime("%b %d, %Y") : "DRAFT")
-	%h2
+	%h2.title
 		%a{:href => "/articles/#{@article.url}"}= @article.title
 
 	%p.intro= @article.introduction
