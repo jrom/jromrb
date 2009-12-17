@@ -8,6 +8,7 @@
 	h1
 		font-size: 3em
 		font-variant: small-caps
+		letter-spacing: -0.02em
 
 #header
 	+column(18)
@@ -32,8 +33,7 @@
 	h2.title
 		+column(14)
 		margin-bottom: 0
-		font-weight: bold
-		letter-spacing: -0.05em
+		letter-spacing: -0.03em
 		line-height: 1em
 
 	p.intro
@@ -66,6 +66,14 @@
 	div.body
 		display: block
 		clear: both
+
+		blockquote
+			border-left: 4px solid #d8d8d8
+			margin-left: 0
+			padding-left: 20px
+
+		h1, h2, h3, h4, h5, h6
+			margin-bottom: 0
 
 #header, #articles #article, h2
 	a
