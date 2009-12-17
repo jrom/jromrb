@@ -8,10 +8,10 @@
 
 	%div.info
 		30 comments
-		·
-		%span.tag ruby on rails
-		%span.tag ajax
-		%span.tag jquery
+		%ul.tags
+			%li ruby on rails
+			%li ajax
+			%li jquery
 
 	%div.body
 		~BlueCloth.new(@article.body).to_html
