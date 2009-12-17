@@ -9,9 +9,9 @@
 	%div.info
 		30 comments
 		%ul.tags
-			%li ruby on rails
-			%li ajax
-			%li jquery
+			- @article.tags.each do |tag|
+				%li
+					%a{:href => "/tags/#{tag.url}", :title => "Posts tagged with: #{tag.name}"}= tag.name
 
 	%div.body
 		~BlueCloth.new(@article.body).to_html

@@ -16,6 +16,10 @@
 	%br
 	%textarea{:name => 'introduction', :id => 'introduction', :cols => 88}~  @article.introduction
 %p
+	%label{:for => 'tag_list'}Tags:
+	%br
+	%input{:type => 'text', :name => 'tag_list', :id => 'tag_list', :size => 50, :value => @article.tag_list.join(", ")}
+%p
 	%label{:for => 'body'}Body:
 	%br
 	%textarea{:name => 'body', :id => 'body', :rows => 15, :cols => 88}= "#{@article.body}"

@@ -3,6 +3,7 @@
 require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
+require 'dm-tags'
 
 class Article
   include DataMapper::Resource
@@ -13,6 +14,8 @@ class Article
   property :introduction, String, :length => 200
   property :body, Text
   property :published_at, DateTime
+
+  has_tags_on :tags
 
   timestamps :at
 
@@ -43,7 +46,13 @@ class Article
     :permaLink => "/#{url}",
     :mt_tags => (introduction || "..."),
     :post_status => (published_at.nil? ? "0" : "1"),
-  }
+    }
   end
 
+end
+
+class Tag
+  def url
+    CGI ? CGI.escape self.name : self.name
+  end
 end
