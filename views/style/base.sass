@@ -1,21 +1,13 @@
 @import base.sass
 
-@font-face
-	font-family: "lucida grande"
-	src: url("/fonts/museo_sans_500.otf")
-
 #content
 	+container
 	margin-top: 20px
 	font-size: 15px
-	font-family: "1Lucida Grande", "Lucida Sans", Helvetica, sans-serif
+	font-family: "Lucida Grande", "Lucida Sans", Helvetica, sans-serif
 	h1
 		font-size: 1.5em
 		font-variant: small-caps
-/*body.index
-	#content
-		h1
-			font-size: 3em*/
 
 #header
 	+column(18)
@@ -30,31 +22,50 @@
 	+no-bullets
 	margin: 0
 
-h3.articles
-	+prepend(5)
-	padding-bottom: 10px
-	border-bottom: 5px solid #EEE
-
 #article
+	.head
+		+column(18)
+		clear: both
 	.date
-		color: black
 		font-size: 1.5em
-		line-height: 2em
 		color: #777
-		+prepend(1)
-		+column(4)
+		float: right
 	h2.title
-		+column(13, true)
+		+column(13)
 		margin-bottom: 0
-	p.intro
-		+prepend(5)
-		+column(13, true)
+		font-weight: bold
+		font-family: 'Helvetica', 'Arial', sans-serif
+		letter-spacing: -0.05em
+		line-height: 1em
 
-#article.solo
 	p.intro
+		+column(13)
+		margin-bottom: 20px
+
+	div.info
+		clear: both
+		border-top: 1px solid #ddd
+		border-bottom: 1px solid #ddd
+		margin-bottom: 20px
+		background-color: #eee
+		color: #777
+		padding: 0 20px
+		font-size: 0.8em
+
+		span.tag
+			background-color: #333
+			color: #fff
+			padding: 0 5px
+			margin-right: 5px
+			-moz-border-radius: 5px
+			-ms-border-radius: 5px
+			-webkit-border-radius: 5px
+			-khtml-border-radius: 5px
+
+	div.body
+		display: block
 		clear: both
 
-			
 #header, #articles #article, h2
 	a
 		+hover-link

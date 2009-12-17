@@ -1,11 +1,19 @@
-#article.solo
-	%span.date= (@article.published_at ? @article.published_at.strftime("%b %d, %Y") : "DRAFT")
-	%h2.title
-		%a{:href => "/articles/#{@article.url}"}= @article.title
+%div#article.solo
+	%div.head
+		%span.date= (@article.published_at ? @article.published_at.strftime("%b %d, %Y") : "DRAFT")
+		%h2.title
+			%a{:href => "/articles/#{@article.url}"}= @article.title
 
 	%p.intro= @article.introduction
 
-	%article.body
+	%div.info
+		30 comments
+		·
+		%span.tag ruby on rails
+		%span.tag ajax
+		%span.tag jquery
+
+	%div.body
 		~BlueCloth.new(@article.body).to_html
 
 	- if logged_in?
