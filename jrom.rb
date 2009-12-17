@@ -155,6 +155,7 @@ end
 get '/articles/:url/?' do |url|
   @article = Article.first(:url => url)
   if @article
+    require_user unless @article.published_at
     haml :'articles/show'
   else
     raise not_found

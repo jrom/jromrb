@@ -19,6 +19,10 @@ class Article
   validates_is_unique :url
   validates_present :title
 
+  before :save do
+    self.url.downcase!
+  end
+
   def published=(value)
     puts "Doing publication"
     if value == "1"
