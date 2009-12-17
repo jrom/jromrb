@@ -11,7 +11,7 @@
 		%ul.tags
 			- @article.tags.each do |tag|
 				%li
-					%a{:href => "/tags/#{tag.url}", :title => "Posts tagged with: #{tag.name}"}= tag.name
+					%a{:href => "/tags/#{tag.url}", :title => "Articles tagged with: #{tag.name}"}= tag.name
 
 	%div.body
 		~BlueCloth.new(@article.body).to_html

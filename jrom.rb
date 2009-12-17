@@ -5,6 +5,7 @@ require 'compass'
 require 'bluecloth'
 require 'xmlrpc/server'
 require 'xmlrpc/marshal'
+require 'cgi'
 
 Dir.glob('lib/*.rb') do |lib|
   require lib
@@ -135,6 +136,12 @@ post '/articles/:url/edit/?' do |url|
   else
     raise not_found
   end
+end
+
+get '/tags/:tag/?' do |tag|
+  puts tag
+  @articles = Article.tagged_with(CGI.unescape(tag))
+  haml :index
 end
 
 get '/articles/drafts/?' do
