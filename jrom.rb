@@ -32,17 +32,24 @@ helpers do
     session[:login] == true
   end
 
-  def protected!
+  def unauthorized
     response['WWW-Authenticate'] = %(Basic realm="Testing HTTP Auth") and \
-      throw(:halt, [401, "Not authorized\n"]) and \
-      return unless authorized?
+      throw(:halt, [401, "Not authorized\n"])
+  end
+
+  def protected!
+    unauthorized and return unless authorized?
     session[:login] = true
     redirect '/'
   end
 
   def authorized?
     @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-    @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials[0] == APP_CONFIG['user']  && OpenSSL::Digest::SHA1.new(@auth.credentials[1]).hexdigest == APP_CONFIG['password']
+    @auth.provided? && @auth.basic? && @auth.credentials && authenticate(@auth.credentials[0], @auth.credentials[1])
+  end
+
+  def authenticate(username, password)
+    APP_CONFIG['user'] == username && APP_CONFIG['password'] == OpenSSL::Digest::SHA1.new(password).hexdigest
   end
 end
 
@@ -57,11 +64,13 @@ end
 
 post '/xmlrpc' do
   xmlrpc = XMLRPC::BasicServer.new
-  xmlrpc.add_handler('metaWeblog.getRecentPosts') do
+  xmlrpc.add_handler('metaWeblog.getRecentPosts') do |blog,username,password,number|
+    unauthorized unless authenticate(username, password) || authorized?
     Article.all.map{ |a| a.to_metaweblog}
   end
 
   xmlrpc.add_handler('metaWeblog.editPost') do |postid,username,password,struct,publish|
+    unauthorized unless authenticate(username, password) || authorized?
     article = Article.first(:id => postid.to_i)
     article.title = struct["title"]
     article.body = struct["description"]
@@ -70,12 +79,12 @@ post '/xmlrpc' do
   end
 
   xmlrpc.add_handler('metaWeblog.getPost') do |postid,username,password|
+    unauthorized unless authenticate(username, password) || authorized?
     Article.first(:id => postid.to_i).to_metaweblog
   end
 
   response = xmlrpc.process(@request.body.read)
   headers 'Content-Type' => 'text/xml'
-  # puts response.inspect
   response
 end
 
