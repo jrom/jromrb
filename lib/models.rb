@@ -10,25 +10,24 @@ class Article
   include DataMapper::Resource
 
   property :id, Serial
-  property :url, String, :key => true
-  property :title, String
+  property :url, String, :required => true
+  property :title, String, :required => true
   property :introduction, String, :length => 200
-  property :body, Text
+  property :body, Text, :required => true
   property :published_at, DateTime
 
   has_tags_on :tags
+  has n, :comments
 
   timestamps :at
 
   validates_is_unique :url
-  validates_present :title
 
   before :save do
     self.url.downcase!
   end
 
   def published=(value)
-    puts "Doing publication"
     if value == "1"
       attribute_set(:published_at, Time.now) if published_at.nil?
     else
@@ -56,4 +55,16 @@ class Tag
   def url
     CGI ? CGI.escape(self.name) : self.name
   end
+end
+
+class Comment
+  include DataMapper::Resource
+
+  property :id, Serial
+  property :name, String, :length => (1..50)
+  property :email, String, :required => true, :format => :email_address
+  property :body, Text, :required => true
+  property :published_at, DateTime, :required => true
+  belongs_to :article, :required => true
+
 end

@@ -7,7 +7,7 @@
 	%p.intro= @article.introduction
 
 	%div.info
-		30 comments
+		%a{ :href => "#comments" }= pluralize(@article.comments.size, "comment")
 		%ul.tags
 			- @article.tags.each do |tag|
 				%li
@@ -18,3 +18,17 @@
 
 	- if logged_in?
 		%a{:href => "/articles/#{@article.url}/edit"} e
+
+	- if @article.comments.size > 0
+		%h3#comments.comments Comments
+	- @article.comments.each do |comment|
+		%div.comment{:id => "comment-#{comment.id}"}
+			%img.avatar{:src => gravatar_for(comment.email)}
+			%span.author= comment.name
+			%span.date
+				%a{ :href => "\#comment-#{comment.id}" }= comment.published_at.strftime("%H:%M &mdash; %b %d, %Y")
+			%span.body~ BlueCloth.new(comment.body).to_html
+			%div.clear
+
+	%h3.comments Add a comment
+	= haml :'comments/form', :layout => false

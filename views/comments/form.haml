@@ -1,0 +1,16 @@
+%form{ :method => 'post', :action => '/comments/new', :class => 'new_comment' }
+	%input{ :type => 'hidden', :name => 'article_id', :value => @article.id }
+	%p
+		%label{ :for => 'name' } Name:
+		%br
+		%input{ :type => 'text', :name => 'name', :id => 'name' }
+	%p
+		%label{ :for => 'email' } Email:
+		%br
+		%input{ :type => 'text', :name => 'email', :id => 'email', :size => 50 }
+	%p
+		%label{ :for => 'body' } Comment:
+		%br
+		%textarea{ :name => 'body', :id => 'body', :rows => 15, :cols => 88 }
+	%p
+		%input{ :type => 'submit', :value => 'Add' }

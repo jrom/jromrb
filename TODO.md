@@ -1,11 +1,12 @@
 * <del>Create comment Model</del>
-* Ability to insert comments
-* Show gravatar in comments
-* Create
+* <del>Ability to insert comments</del>
+* <del>Show gravatar in comments</del>
 * Comment moderation
+* Antispam
 * Create an about (or jordi-romero) page
 * Ability to insert link-only posts
-* Create an articles feed
+* <del>Create an articles feed</del>
 * Create a links feed
 * Create a mixed feed
 * Create a comments feed
+* Commenting live-preview
