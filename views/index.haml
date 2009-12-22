@@ -2,6 +2,10 @@
 
 - if @articles && @articles.length > 0
 	/ %h3.articles Archive
+	- if @tag
+		%h3.articles
+			Articles tagged with:
+			%strong= @tag
 	%ul#articles
 		- @articles.each do |article|
 			%li

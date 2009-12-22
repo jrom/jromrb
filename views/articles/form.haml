@@ -2,11 +2,10 @@
 	%ul{:class => 'errors'}
 		- @article.errors.each do |error|
 			%li= error
-- if @article.new?
-	%p
-		%label{:for => 'url'}URL:
-		%br
-		%input{:type => 'text', :name => 'url', :id => 'url', :value => @article.url}
+%p
+	%label{:for => 'url'}URL:
+	%br
+	%input{:type => 'text', :name => 'url', :id => 'url', :value => @article.url}
 %p
 	%label{:for => 'title'}Title:
 	%br

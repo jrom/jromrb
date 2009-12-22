@@ -139,8 +139,9 @@ post '/articles/:url/edit/?' do |url|
 end
 
 get '/tags/:tag/?' do |tag|
-  puts tag
   @articles = Article.tagged_with(CGI.unescape(tag))
+  @tag = tag
+  @title = "Articles about '#{tag}' by Jordi Romero"
   haml :index
 end
 
@@ -163,10 +164,17 @@ get '/articles/:url/?' do |url|
   @article = Article.first(:url => url)
   if @article
     require_user unless @article.published_at
+    @title = "'#{@article.title}' by Jordi Romero"
     haml :'articles/show'
   else
     raise not_found
   end
+end
+
+get '/feed/?' do
+  content_type 'application/atom+xml', :charset => 'utf-8'
+  @articles = Article.all(:published_at.not => nil, :order => [:published_at.desc])
+  haml :feed, {:format => :xhtml, :layout => false}
 end
 
 get '/stylesheets/admin.css' do

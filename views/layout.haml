@@ -1,7 +1,7 @@
 !!! Strict
 %html
 	%head
-		%title Jordi Romero
+		%title= @title ? @title : "Jordi Romero"
 		%link{:href => '/stylesheets/base.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
 		%link{:href => '/stylesheets/code.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
 		- if logged_in?

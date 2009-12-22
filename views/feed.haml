@@ -1,0 +1,26 @@
+!!! XML
+%feed{:xmlns => "http://www.w3.org/2005/Atom"}
+	%title Jordi Romero
+	%link{:href => "http://jrom.net/", :rel => "alternate", :type => "text/html"}
+	%link{:href => "http://jrom.net/feed/", :rel => "self", :type => "application/atom+xml"}
+	%id http://jrom.net/
+	%updated= @articles[0].created_at
+	%author
+		%name Jordi Romero
+		%url http://jrom.net/jordi-romero
+	- @articles.each do |article|
+		%entry
+			%title= article.title
+			%id= article.url
+			%link{:href => "/articles/#{article.url}", :rel => "alternate", :type => "text/html"}
+			%link{:href => "/articles/#{article.url}\#comments", :rel => "comments", :type => "text/html"}
+			%author
+				%name Jordi Romero
+				%url http://jrom.net/jordi-romero
+			%published= article.created_at
+			%updated= article.updated_at
+			%content{:type => "xhtml"}
+				%div{:xmlns => "http://www.w3.org/1999/xhtml"}
+				%p.intro= article.introduction
+				%div.body
+					~BlueCloth.new(article.body).to_html
