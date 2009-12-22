@@ -63,6 +63,7 @@ class Comment
   property :id, Serial
   property :name, String, :length => (1..50)
   property :email, String, :required => true, :format => :email_address
+  property :url, String
   property :body, Text, :required => true
   property :published_at, DateTime, :required => true
   belongs_to :article, :required => true

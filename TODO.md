@@ -10,3 +10,6 @@
 * Create a mixed feed
 * Create a comments feed
 * Commenting live-preview
+* Create a contact page
+* Redirect old links to the new equivalents
+* Cache Sass

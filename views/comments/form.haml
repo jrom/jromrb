@@ -9,7 +9,14 @@
 		%br
 		%input{ :type => 'text', :name => 'email', :id => 'email', :size => 50 }
 	%p
-		%label{ :for => 'body' } Comment:
+		%label{ :for => 'url' } Url (optional):
+		%br
+		%input{ :type => 'text', :name => 'url', :id => 'url' }
+	%p
+		%label{ :for => 'body' }
+			Comment (you can use
+			%a{ :href => "http://daringfireball.net/projects/markdown/", :title => "Markdown", :target => "_blank" } Markdown
+			):
 		%br
 		%textarea{ :name => 'body', :id => 'body', :rows => 15, :cols => 88 }
 	%p

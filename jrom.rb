@@ -194,6 +194,7 @@ post '/comments/new' do
   article = Article.first(:id => params[:article_id])
   comment = Comment.new(params)
   comment.published_at = Time.now
+  comment.save
   redirect "/articles/#{article.url}\#comment-#{comment.id}"
 end
 
