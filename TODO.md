@@ -20,7 +20,7 @@
 * <del>Show gravatar in comments</del>
 * <del>Separate helpers</del>
 * <del>Create an articles feed</del>
-* <p>Escape inputs</p>
+* <del>Escape inputs</del>
 * <del>Antispam</del>
 * <del>Join sass files</del>
 * <del>Better Missing Gravatar image</del>
