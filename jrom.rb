@@ -165,19 +165,9 @@ module JROMRB
       haml :feed, {:format => :xhtml, :layout => false}
     end
 
-    get '/stylesheets/admin.css' do
+    get '/stylesheets/production.css' do
       headers 'Content-Type' => 'text/css; charset=utf-8'
-      sass :'style/admin'
-    end
-
-    get '/stylesheets/base.css' do
-      headers 'Content-Type' => 'text/css; charset=utf-8'
-      sass :'style/base'
-    end
-
-    get '/stylesheets/code.css' do
-      headers 'Content-Type' => 'text/css; charset=utf-8'
-      sass :'style/zenburn'
+      sass :'style/production'
     end
   end # class Application
 end # module

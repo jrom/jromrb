@@ -1,12 +1,5 @@
-* <del>Create comment Model</del>
-* <del>Ability to insert comments</del>
-* <del>Show gravatar in comments</del>
-* <del>Separate helpers</del>
-* <del>Create an articles feed</del>
-* <p>Escape inputs</p>
-
 * Comment moderation
-* Antispam
+* Ability to modify comments (only by admin)
 * Create an about (or jordi-romero) page
 * Create a contact page
 * Ability to insert link-only posts
@@ -18,3 +11,13 @@
 * Cache Sass
 * AJAX Comments
 * Allow nice code pastes in comments
+
+# Completed
+* <del>Create comment Model</del>
+* <del>Ability to insert comments</del>
+* <del>Show gravatar in comments</del>
+* <del>Separate helpers</del>
+* <del>Create an articles feed</del>
+* <p>Escape inputs</p>
+* <del>Antispam</del>
+* <del>Join sass files</del>
