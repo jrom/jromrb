@@ -2,7 +2,7 @@
 %html
 	%head
 		%title= @title ? @title : "Jordi Romero"
-		%link{:href => '/stylesheets/production.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
+		%link{:href => versioned_stylesheet('production'), :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
 	%body{ :class => @body_class }
 		%div#content
 			%h1#header
@@ -20,6 +20,6 @@
 						%li
 							%a{:href => '/logout'} Logout
 
-	%script{:src=>"/javascripts/highlight.pack.js", :type=>"text/javascript"}
+	%script{:src=> versioned_javascript("highlight.pack"), :type=>"text/javascript"}
 	%script{:type => "text/javascript"}
 		hljs.initHighlightingOnLoad();

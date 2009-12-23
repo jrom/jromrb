@@ -173,7 +173,7 @@ module JROMRB
 
     get '/stylesheets/production.css' do
       headers 'Content-Type' => 'text/css; charset=utf-8'
-      sass :'style/production'
+      cache_page '/stylesheets/production.css', sass(:'style/production')
     end
   end # class Application
 end # module

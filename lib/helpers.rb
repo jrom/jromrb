@@ -67,5 +67,27 @@ module JROMRB
       markdown(Rack::Utils.escape_html(input))
     end
 
+    def versioned_stylesheet(stylesheet)
+      "/stylesheets/#{stylesheet}.css?" +
+      if Sinatra::Application.production?
+        File.mtime(File.join(Sinatra::Application.public, "stylesheets", "#{stylesheet}.css")).to_i.to_s
+      else
+        File.mtime(File.join(Sinatra::Application.views, "style", "#{stylesheet}.sass")).to_i.to_s
+      end
+    end
+
+    def versioned_javascript(javascript)
+      "/javascripts/#{javascript}.js?" +
+        File.mtime(File.join(Sinatra::Application.public, "javascripts", "#{javascript}.js")).to_i.to_s
+    end
+
+    def cache_page(url, text)
+      if Sinatra::Application.production?
+        path = File.join(Sinatra::Application.public, url)
+        File.open(path, 'w') { |f| f.write(text) }
+      end
+      text
+    end
+
   end # module Helpers
 end # module JROMRB
