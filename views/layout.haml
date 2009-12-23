@@ -23,3 +23,6 @@
 	%script{:src=> versioned_javascript("highlight.pack"), :type=>"text/javascript"}
 	%script{:type => "text/javascript"}
 		hljs.initHighlightingOnLoad();
+/
+	environment:
+	=Sinatra::Application.environment
