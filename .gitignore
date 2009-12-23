@@ -1,3 +1,6 @@
 *.sqlite3
 config/jrom.yml
 config/deploy.rb
+log/*.log
+public/stylesheets/*.css
+.sass-cache

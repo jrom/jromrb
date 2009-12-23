@@ -12,6 +12,7 @@
 * Redirect old links to the new equivalents
 * AJAX Comments
 * Allow nice code pastes in comments
+* Make a nicer 404 page
 
 # Completed
 

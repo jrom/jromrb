@@ -6,6 +6,7 @@ require 'bluecloth'
 require 'xmlrpc/server'
 require 'xmlrpc/marshal'
 require 'digest/md5'
+require 'logger'
 
 module JROMRB
   class Application < Sinatra::Base
@@ -16,6 +17,8 @@ module JROMRB
     end
 
     configure do
+      Log = Logger.new("log/#{Sinatra::Application.environment}.log")
+      Log.level = Logger::INFO
       set :root, File.dirname(__FILE__)
       set :static, true
       enable :sessions
