@@ -1,3 +1,4 @@
+require 'fileutils'
 
 module JROMRB
   module Helpers
@@ -69,7 +70,7 @@ module JROMRB
 
     def versioned_stylesheet(stylesheet)
       "/stylesheets/#{stylesheet}.css?" +
-      if Sinatra::Application.production?
+      if Sinatra::Application.production? && File.exist?(File.join(Sinatra::Application.public, "stylesheets", "#{stylesheet}.css"))
         File.mtime(File.join(Sinatra::Application.public, "stylesheets", "#{stylesheet}.css")).to_i.to_s
       else
         File.mtime(File.join(Sinatra::Application.views, "style", "#{stylesheet}.sass")).to_i.to_s
@@ -84,6 +85,7 @@ module JROMRB
     def cache_page(url, text)
       if Sinatra::Application.production?
         path = File.join(Sinatra::Application.public, url)
+        FileUtils.mkdir_p(File.dirname(path))
         File.open(path, 'w') { |f| f.write(text) }
       end
       text
