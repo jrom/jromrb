@@ -32,7 +32,7 @@ module JROMRB
 
     def gravatar_for(email, size=90)
       hash = Digest::MD5.hexdigest(email)
-      "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
+      "http://www.gravatar.com/avatar/#{hash}?s=#{size}&d=identicon"
     end
 
     def relative_time_ago(from_time)
