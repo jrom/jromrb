@@ -22,3 +22,4 @@
 * <del>Antispam</del>
 * <del>Join sass files</del>
 * <del>Better Missing Gravatar image</del>
+* <del>Feedback on invalid comment</del>

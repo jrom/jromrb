@@ -141,15 +141,21 @@ module JROMRB
     end
 
     post '/comments/new' do
-      article = Article.first(:id => params[:article_id])
-      comment = Comment.new(params)
-      comment.published_at = Time.now
-      comment.save
-      redirect "/articles/#{article.url}\#comment-#{comment.id}"
+      @article = Article.first(:id => params[:article_id])
+      @comment = Comment.new(params)
+      @comment.published_at = Time.now
+      if @comment.save
+        redirect "/articles/#{@article.url}\#comment-#{@comment.id}"
+      else
+        require_user unless @article.published_at
+        @title = "'#{@article.title}' by Jordi Romero"
+        haml :'articles/show'
+      end
     end
 
     get '/articles/:url/?' do |url|
       @article = Article.first(:url => url)
+      @comment = Comment.new
       if @article
         require_user unless @article.published_at
         @title = "'#{@article.title}' by Jordi Romero"
