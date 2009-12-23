@@ -118,5 +118,16 @@ a
 	.body
 		display: block
 
+.new_comment
+	.name
+		+column(9)
+	.url
+		+column(9, true)
+	.email
+		+column(9)
+	.antispam
+		+column(9, true)
+	.name input, .url input, .email input, .antispam input
+		width: 70%
 .clear
 	clear: both

@@ -59,6 +59,8 @@ end
 class Comment
   include DataMapper::Resource
 
+  attr_accessor :antispam
+
   property :id, Serial
   property :name, String, :length => (1..50)
   property :email, String, :required => true, :format => :email_address
@@ -67,4 +69,9 @@ class Comment
   property :published_at, DateTime, :required => true
   belongs_to :article, :required => true
 
+  validates_with_method :check_antispam
+
+  def check_antispam
+    self.antispam.downcase.strip == self.email.downcase.strip ? true : [false, "Antispam check failed"]
+  end
 end

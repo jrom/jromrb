@@ -1,17 +1,21 @@
 %form{ :method => 'post', :action => '/comments/new', :class => 'new_comment' }
 	%input{ :type => 'hidden', :name => 'article_id', :value => @article.id }
-	%p
+	%p.name
 		%label{ :for => 'name' } Name:
 		%br
 		%input{ :type => 'text', :name => 'name', :id => 'name' }
-	%p
-		%label{ :for => 'email' } Email:
-		%br
-		%input{ :type => 'text', :name => 'email', :id => 'email', :size => 50 }
-	%p
+	%p.url
 		%label{ :for => 'url' } Url (optional):
 		%br
 		%input{ :type => 'text', :name => 'url', :id => 'url' }
+	%p.email
+		%label{ :for => 'email' } Email:
+		%br
+		%input{ :type => 'text', :name => 'email', :id => 'email' }
+	%p.antispam
+		%label{ :for => 'antispam' } Enter your email address again:
+		%br
+		%input{ :type => 'text', :name => 'antispam', :id => 'antispam' }
 	%p
 		%label{ :for => 'body' }
 			Comment (you can use
@@ -20,4 +24,4 @@
 		%br
 		%textarea{ :name => 'body', :id => 'body', :rows => 15, :cols => 88 }
 	%p
-		%input{ :type => 'submit', :value => 'Add' }
+		%input{ :type => 'submit', :value => 'Add comment', :class => 'submit' }
