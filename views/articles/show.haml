@@ -14,7 +14,7 @@
 					%a{:href => "/tags/#{tag.url}", :title => "Articles tagged with: #{tag.name}"}= tag.name
 
 	%div.body
-		~BlueCloth.new(@article.body).to_html
+		~ markdown @article.body
 
 	- if logged_in?
 		%a{:href => "/articles/#{@article.url}/edit"} e
@@ -23,12 +23,12 @@
 		%h3#comments.comments Comments
 	- @article.comments.each do |comment|
 		%div.comment{:id => "comment-#{comment.id}"}
-			%img.avatar{:src => gravatar_for(comment.email)}
+			%img.avatar{:src => gravatar_for(comment.email), :alt => "#{comment.name}'s avatar"}
 			%span.author
 				%a{ :href => "#{comment.url}", :title => "#{comment.name}", :rel => "external nofollow" }= comment.name
 			%span.date
 				%a{ :href => "\#comment-#{comment.id}" }= comment.published_at.strftime("%H:%M &mdash; %b %d, %Y")
-			%span.body~ BlueCloth.new(comment.body).to_html
+			%span.body~ secure_markdown comment.body
 			%div.clear
 
 	%h3.comments Add a comment

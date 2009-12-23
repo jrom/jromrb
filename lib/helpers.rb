@@ -59,5 +59,13 @@ module JROMRB
       end
     end
 
+    def markdown(input)
+      BlueCloth.new(input).to_html
+    end
+
+    def secure_markdown(input)
+      markdown(Rack::Utils.escape_html(input))
+    end
+
   end # module Helpers
 end # module JROMRB

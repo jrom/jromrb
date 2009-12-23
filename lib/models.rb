@@ -4,7 +4,6 @@ require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'dm-tags'
-require 'cgi'
 
 class Article
   include DataMapper::Resource
@@ -53,7 +52,7 @@ end
 
 class Tag
   def url
-    CGI ? CGI.escape(self.name) : self.name
+    Rack::Utils.escape(self.name)
   end
 end
 

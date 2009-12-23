@@ -23,11 +23,6 @@
 						%li
 							%a{:href => '/logout'} Logout
 
-	%script{:src=>"/javascripts/jquery.js", :type=>"text/javascript"}
 	%script{:src=>"/javascripts/highlight.pack.js", :type=>"text/javascript"}
 	%script{:type => "text/javascript"}
 		hljs.initHighlightingOnLoad();
-		// CSS grid
-		$(function() {
-		if (window.location.toString().match(/\?grid$/)) $("#content").addClass("showgrid");
-		})

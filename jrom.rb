@@ -5,19 +5,21 @@ require 'compass'
 require 'bluecloth'
 require 'xmlrpc/server'
 require 'xmlrpc/marshal'
-require 'cgi'
 require 'digest/md5'
 
 module JROMRB
   class Application < Sinatra::Base
+
 
     Dir.glob('lib/*.rb') do |lib|
       require lib
     end
 
     configure do
+      set :root, File.dirname(__FILE__)
+      set :static, true
       enable :sessions
-      APP_CONFIG = YAML.load_file("#{Dir.pwd}/config/jrom.yml")
+      JROMRB::APP_CONFIG = YAML.load_file("#{Dir.pwd}/config/jrom.yml")
       DataMapper.setup(:default, APP_CONFIG['database'])
 
       Compass.configuration do |config|
@@ -117,9 +119,9 @@ module JROMRB
     end
 
     get '/tags/:tag/?' do |tag|
-      @articles = Article.tagged_with(CGI.unescape(tag))
-      @tag = tag
-      @title = "Articles about '#{tag}' by Jordi Romero"
+      @tag = Rack::Utils.unescape(tag)
+      @articles = Article.tagged_with(@tag)
+      @title = "Articles about '#{@tag}' by Jordi Romero"
       haml :index
     end
 
