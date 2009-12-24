@@ -5,8 +5,10 @@
 		%link{:href => versioned_stylesheet('production'), :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
 	%body{ :class => @body_class }
 		%div#content
-			%h1#header
-				%a{:href => '/'} Jordi Romero
+			#header
+				%h1
+					%a{:href => '/', :title => 'Jordi Romero' } Jordi Romero
+				%a.about{ :href => '/about', :title => 'About Jordi Romero' } About
 			= yield
 			- if logged_in?
 				%div#admin

@@ -38,7 +38,7 @@ module JROMRB
     end
 
     not_found do
-      haml :not_found
+      haml :'misc/not_found'
     end
 
     before do
@@ -166,6 +166,20 @@ module JROMRB
       else
         raise not_found
       end
+    end
+
+    get '/about/?' do
+      @title = "About Jordi Romero"
+      haml :'misc/about'
+    end
+
+    get '/jordi-romero/?' do
+      redirect '/about', 301
+    end
+
+    get '/contact/?' do
+      @title = "Contact with Jordi Romero"
+      haml :'misc/contact'
     end
 
     get '/feed/?' do

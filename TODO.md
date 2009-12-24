@@ -2,8 +2,6 @@
 
 * Comment moderation
 * Ability to modify comments (only by admin)
-* Create an about (or jordi-romero) page
-* Create a contact page
 * Ability to insert link-only posts
   * Create a links feed
   * Create a mixed feed
@@ -12,7 +10,6 @@
 * Redirect old links to the new equivalents
 * AJAX Comments
 * Allow nice code pastes in comments
-* Make a nicer 404 page
 
 # Completed
 
@@ -27,3 +24,6 @@
 * <del>Better Missing Gravatar image</del>
 * <del>Feedback on invalid comment</del>
 * <del>Cache Sass</del>
+* <del>Make a nicer 404 page</del>
+* <del>Create an about (or jordi-romero) page</del>
+* <del>Create a contact page</del>
