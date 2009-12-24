@@ -1,0 +1,21 @@
+!!! XML
+%feed{:xmlns => "http://www.w3.org/2005/Atom"}
+	%title Comments on Jordi Romero
+	%link{:href => "http://jrom.net/", :rel => "alternate", :type => "text/html"}
+	%link{:href => "http://jrom.net/comments/feed", :rel => "self", :type => "application/atom+xml"}
+	%id http://jrom.net/comments/feed
+	%updated= @comments[0].published_at
+	- @comments.each do |comment|
+		%entry
+			%title= "#{comment.name} commented on #{comment.article.title}"
+			%id= comment.id
+			%link{:href => "/articles/#{comment.article.url}\#comment-#{comment.id}", :rel => "alternate", :type => "text/html"}
+			%link{:href => "/articles/#{comment.article.url}\#comments", :rel => "comments", :type => "text/html"}
+			%author
+				%name= comment.name
+				%url= comment.url
+			%published= comment.published_at
+			%updated= comment.published_at
+			%content{:type => "xhtml"}
+				%div{:xmlns => "http://www.w3.org/1999/xhtml"}
+					~secure_markdown comment.body

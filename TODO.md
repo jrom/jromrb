@@ -5,10 +5,9 @@
 * Ability to insert link-only posts
   * Create a links feed
   * Create a mixed feed
-* Create a comments feed
 * Comment preview
-* Redirect old links to the new equivalents
 * AJAX Comments
+* Redirect old links to the new equivalents
 * Allow nice code pastes in comments
 
 # Completed
@@ -27,3 +26,4 @@
 * <del>Make a nicer 404 page</del>
 * <del>Create an about (or jordi-romero) page</del>
 * <del>Create a contact page</del>
+* <del>Create a comments feed</del>

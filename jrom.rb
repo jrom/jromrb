@@ -185,7 +185,13 @@ module JROMRB
     get '/feed/?' do
       content_type 'application/atom+xml', :charset => 'utf-8'
       @articles = Article.all(:published_at.not => nil, :order => [:published_at.desc])
-      haml :feed, {:format => :xhtml, :layout => false}
+      haml :'articles/feed', { :format => :xhtml, :layout => false }
+    end
+
+    get '/comments/feed/?' do
+      content_type 'application/atom+xml', :charset => 'utf-8'
+      @comments = Comment.all(:order => [:published_at.desc])
+      haml :'comments/feed', { :format => :xhtml, :layout => false }
     end
 
     get '/stylesheets/production.css' do
