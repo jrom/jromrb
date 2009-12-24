@@ -106,10 +106,10 @@ module JROMRB
       end
     end
 
-    post '/articles/:url/edit/?' do |url|
+    post '/articles/:articleurl/edit/?' do |articleurl|
       require_user
-
-      @article = Article.first(:url => url)
+      params.delete('articleurl') # Because Sinatra sets params[:articleurl] and the model hates it
+      @article = Article.first(:url => articleurl)
       if @article
         if @article.update(params)
           redirect "/articles/#{@article.url}"

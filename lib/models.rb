@@ -41,8 +41,8 @@ class Article
     :description => body,
     :title => title,
     :wp_slug => "#{url}",
-    :link => "/#{url}",
-    :permaLink => "/#{url}",
+    :link => "/articles/#{url}",
+    :permaLink => "/articles/#{url}",
     :mt_tags => (introduction || "..."),
     :post_status => (published_at.nil? ? "0" : "1"),
     }
