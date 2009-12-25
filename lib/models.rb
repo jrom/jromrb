@@ -69,9 +69,16 @@ class Comment
   property :published_at, DateTime, :required => true
   belongs_to :article, :required => true
 
-  validates_with_method :check_antispam
+  before :save, :check_antispam
+  before :valid? do |com|
+    self.published_at = Time.now
+  end
 
   def check_antispam
-    self.antispam.downcase.strip == self.email.downcase.strip ? true : [false, "Antispam check failed"]
+    self.antispam.downcase.strip == self.email.downcase.strip
+  end
+
+  def role
+    self.email.downcase.strip == "jordi@jrom.net" ? "author" : ""
   end
 end

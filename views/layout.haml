@@ -1,6 +1,7 @@
 !!! Strict
-%html
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
 	%head
+		%meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}
 		%title= @title ? @title : "Jordi Romero"
 		%link{:href => versioned_stylesheet('production'), :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
 	%body{ :class => @body_class }
@@ -19,12 +20,15 @@
 							%a{:href => '/articles/drafts'} Drafts
 						%li
 							%a{:href => '/articles/new'} New article
+						- if @article && @article.id
+							%li
+								%a{:href => "/articles/#{@article.url}/edit"} Edit this article
 						%li
 							%a{:href => '/logout'} Logout
 
-	%script{:src=> versioned_javascript("highlight.pack"), :type=>"text/javascript"}
-	%script{:type => "text/javascript"}
-		hljs.initHighlightingOnLoad();
-/
-	environment:
-	=Sinatra::Application.environment
+		%script{:src=> versioned_javascript("highlight.pack"), :type=>"text/javascript"}
+		:javascript
+			hljs.initHighlightingOnLoad();
+	/
+		environment:
+		=Sinatra::Application.environment

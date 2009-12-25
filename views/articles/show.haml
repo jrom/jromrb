@@ -16,13 +16,10 @@
 	%div.body
 		~ markdown @article.body
 
-	- if logged_in?
-		%a{:href => "/articles/#{@article.url}/edit"} e
-
 	- if @article.comments.size > 0
 		%h3#comments.comments Comments
 	- @article.comments.each do |comment|
-		%div.comment{:id => "comment-#{comment.id}"}
+		%div.comment{:id => "comment-#{comment.id}", :class => "#{(comment.role)}" }
 			%img.avatar{:src => gravatar_for(comment.email), :alt => "#{comment.name}'s avatar"}
 			%span.author
 				- if comment.url && !comment.url.empty?
@@ -31,7 +28,7 @@
 					= comment.name
 			%span.date
 				%a{ :href => "\#comment-#{comment.id}" }= comment.published_at.strftime("%H:%M &mdash; %b %d, %Y")
-			%span.body~ secure_markdown comment.body
+			%div.commentbody~ secure_markdown comment.body
 			%div.clear
 
 	%h3.comments Add a comment
