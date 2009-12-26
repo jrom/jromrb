@@ -9,7 +9,7 @@
 	%ul#articles
 		- @articles.each do |article|
 			%li
-				%div#article
+				%div.article
 					%div.head
 						%span.date= (article.published_at ? article.published_at.strftime("%b %d, %Y") : "DRAFT")
 						%h2.title
